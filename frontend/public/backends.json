@@ -13,6 +13,7 @@
     "If none of these answer, the console serves the recorded session instead of breaking."
   ],
   "backends": [
+    "https://indra-api-r7r9.onrender.com",
     "https://indra-api.onrender.com",
     "https://indra-api-1.onrender.com",
     "https://indra.onrender.com"
