@@ -1,18 +1,25 @@
-# One-click backend deploy for Render (https://render.com) — free tier, no card required.
+# One-click backend deploy for Render (https://render.com).
 #
-# Deploy: https://render.com/deploy?repo=https://github.com/Sumeetredhu/INDRA
+# Deploy (use the dashboard blueprint URL — the render.com/deploy shortcut is unreliable):
+#   https://dashboard.render.com/blueprint/new?repo=https://github.com/Sumeetredhu/INDRA
+#
 # Render reads this file, builds the API, and gives you a public HTTPS URL. Paste that URL into the
 # console's API field and the hosted frontend switches from the recorded session to your live API.
 #
+# region is oregon: Render's free web-service tier is only offered in a few regions, and Singapore
+# is NOT one of them — a free + singapore blueprint is rejected on load, which looks like the deploy
+# page "not opening". Oregon is guaranteed available on free.
+#
 # The free instance sleeps after ~15 minutes idle and takes ~50s to wake. That is fine for a demo
-# and is the reason the frontend also ships a recorded session — the public link is never dead.
+# and is why the frontend also ships a recorded session — the public link is never dead.
 
 services:
   - type: web
     name: indra-api
     runtime: python
     plan: free
-    region: singapore          # closest to an Indian audience; change if you prefer
+    region: oregon
+    autoDeployTrigger: commit
     buildCommand: pip install -r requirements-deploy.txt
     startCommand: python -m uvicorn indra.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health

@@ -91,13 +91,19 @@ backend where reachable, falling back per-store otherwise. `/health` reports whi
 
 The console works for a stranger with no instructions once a backend exists. To create one:
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Sumeetredhu/INDRA)
+**→ [Deploy on Render](https://dashboard.render.com/blueprint/new?repo=https://github.com/Sumeetredhu/INDRA)**
+(the dashboard blueprint URL — more reliable than the `render.com/deploy` shortcut, which can fail
+to load).
 
-1. Click the button, sign in with GitHub, click **Apply**.
+1. Open the link, sign in with GitHub, click **Deploy Blueprint** / **Apply**.
 2. Render reads [`render.yaml`](render.yaml), installs [`requirements-deploy.txt`](requirements-deploy.txt)
    and starts the API. It ingests the demo corpus in-process at boot
    (`INDRA_BOOTSTRAP_DEMO=true`), so the instance is never an empty shell.
 3. Copy the service URL, e.g. `https://indra-api.onrender.com`.
+
+> Render's free web tier needs a payment method on file (it does not charge) and runs in
+> **Oregon** — Singapore is not a free region. If the deploy page errors, it is almost always a
+> free-plan/region mismatch; this blueprint already pins `region: oregon`.
 
 Then make the public console use it — either way works:
 
