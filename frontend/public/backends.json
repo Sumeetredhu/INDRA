@@ -1,0 +1,20 @@
+{
+  "_comment": [
+    "Backends the hosted console probes on load, in order. The first one that answers /health wins,",
+    "and is remembered in localStorage for subsequent visits.",
+    "",
+    "After deploying the API (see render.yaml), put its URL first in this list, rebuild the frontend",
+    "and push to the gh-pages branch — then the public link is live for everyone with no further",
+    "action from any visitor.",
+    "",
+    "You can also skip the rebuild entirely and share a pinned link:",
+    "  https://sumeetredhu.github.io/INDRA/?api=https://your-service.onrender.com",
+    "",
+    "If none of these answer, the console serves the recorded session instead of breaking."
+  ],
+  "backends": [
+    "https://indra-api.onrender.com",
+    "https://indra-api-1.onrender.com",
+    "https://indra.onrender.com"
+  ]
+}

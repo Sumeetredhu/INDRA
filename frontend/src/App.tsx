@@ -5,8 +5,9 @@
  * timestamp, so the presenter moves left to right and never hunts for a screen mid-pitch.
  */
 
-import { useEffect, useMemo, useState } from "react";
-import { IndraApi, defaultApiBase, type Mode } from "./api";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { IndraApi, type Mode } from "./api";
+import { discoverBackend, rememberBackend } from "./backend";
 import { CopilotPage } from "./pages/Copilot";
 import { IngestPage } from "./pages/Ingest";
 import { GraphExplorerPage } from "./pages/GraphExplorer";
@@ -34,14 +35,36 @@ const TABS: { id: Tab; label: string; cue: string }[] = [
 ];
 
 export function App(): JSX.Element {
+  // Resolve once per page load: query param -> localStorage -> build env -> probed candidates.
+  const discovery = useRef(discoverBackend()).current;
+
   const [tab, setTab] = useState<Tab>("copilot");
-  const [base, setBase] = useState(defaultApiBase);
-  const [draftBase, setDraftBase] = useState(defaultApiBase);
+  const [base, setBase] = useState(discovery.initial);
+  const [draftBase, setDraftBase] = useState(discovery.initial);
   const [online, setOnline] = useState<boolean | null>(null);
   const [mode, setMode] = useState<Mode>("unknown");
+  const [searching, setSearching] = useState(!discovery.pinned);
   const [nonce, setNonce] = useState(0);
 
   const api = useMemo(() => new IndraApi(base), [base]);
+
+  // Background discovery. The page has already rendered from the recording by the time this
+  // resolves; when a live backend answers we switch over and everything re-fetches.
+  useEffect(() => {
+    let cancelled = false;
+    void discovery.live.then((found) => {
+      if (cancelled) return;
+      setSearching(false);
+      if (found && found !== base) {
+        setBase(found);
+        setDraftBase(found);
+        setNonce((n) => n + 1);
+      }
+    });
+    return () => { cancelled = true; };
+    // Intentionally once per mount: `discovery` is a ref and never changes identity.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -56,6 +79,13 @@ export function App(): JSX.Element {
     })();
     return () => { cancelled = true; };
   }, [api, nonce]);
+
+  function applyBase(url: string): void {
+    const clean = url.trim().replace(/\/+$/, "");
+    rememberBackend(clean);
+    setBase(clean);
+    setNonce((n) => n + 1);
+  }
 
   const recorded = mode === "recorded";
 
@@ -73,15 +103,17 @@ export function App(): JSX.Element {
         <div className="conn">
           <span className={`dot ${online === null ? "" : recorded ? "rec" : online ? "up" : "down"}`} />
           <span className="small">
-            {online === null
-              ? "connecting…"
-              : recorded
-                ? "recorded session · read-only"
-                : online
-                  ? "live API"
-                  : "API unreachable"}
+            {searching && recorded
+              ? "recorded session · looking for a live backend…"
+              : online === null
+                ? "connecting…"
+                : recorded
+                  ? "recorded session · read-only"
+                  : online
+                    ? "live API"
+                    : "API unreachable"}
           </span>
-          <form onSubmit={(e) => { e.preventDefault(); setBase(draftBase); setNonce((n) => n + 1); }}>
+          <form onSubmit={(e) => { e.preventDefault(); applyBase(draftBase); }}>
             <input
               value={draftBase}
               onChange={(e) => setDraftBase(e.target.value)}
@@ -114,10 +146,9 @@ export function App(): JSX.Element {
             <div className="recnote" role="status">
               <strong>Recorded session</strong>
               <span>
-                No live backend is reachable, so this is a captured run of the real pipeline —
-                every answer, alert, gap and graph below came out of the actual system. Uploads,
-                scans and PDF export need a running API: see the README to start one locally, then
-                point the field above at it.
+                {searching
+                  ? "Still probing for a live backend — a free-tier instance can take up to a minute to wake. Meanwhile this is a captured run of the real pipeline: every answer, alert, gap and graph below came out of the actual system."
+                  : "No live backend answered, so this is a captured run of the real pipeline — every answer, alert, gap and graph below came out of the actual system. Uploads, scans and PDF export need a running API: deploy one with the button in the README, or start one locally and enter its URL above."}
               </span>
             </div>
           </div>

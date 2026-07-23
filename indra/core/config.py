@@ -79,6 +79,9 @@ class Settings(BaseSettings):
             "http://localhost:5173", "http://127.0.0.1:5173",
             "http://localhost:3000", "http://127.0.0.1:3000",
             "http://localhost:4173", "http://127.0.0.1:4173",
+            # The hosted console. Allowing it by default means anyone can open the public link,
+            # run this API locally, and have the two find each other with no configuration.
+            "https://sumeetredhu.github.io",
         ]
     )
 

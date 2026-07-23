@@ -87,16 +87,48 @@ docker compose -f docker/docker-compose.yml up
 Brings up Neo4j, Redis and Postgres. `INDRA_STORAGE_BACKEND=auto` probes each and binds the real
 backend where reachable, falling back per-store otherwise. `/health` reports which is which.
 
-## Deploy the backend
+## Deploy the backend (~3 minutes)
+
+The console works for a stranger with no instructions once a backend exists. To create one:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Sumeetredhu/INDRA)
 
-[`render.yaml`](render.yaml) is a complete free-tier service definition. Once deployed, paste the
-service URL into the console's API field — the hosted frontend switches from the recorded session to
-your live backend.
+1. Click the button, sign in with GitHub, click **Apply**.
+2. Render reads [`render.yaml`](render.yaml), installs [`requirements-deploy.txt`](requirements-deploy.txt)
+   and starts the API. It ingests the demo corpus in-process at boot
+   (`INDRA_BOOTSTRAP_DEMO=true`), so the instance is never an empty shell.
+3. Copy the service URL, e.g. `https://indra-api.onrender.com`.
+
+Then make the public console use it — either way works:
+
+- **Share a pinned link** (zero rebuild):
+  `https://sumeetredhu.github.io/INDRA/?api=https://your-service.onrender.com`
+  The URL is remembered in `localStorage`, so a visitor only needs it once.
+- **Make it the default for everyone**: put the URL first in
+  [`frontend/public/backends.json`](frontend/public/backends.json), then
+  `cd frontend && npm run build` and push `dist/` to the `gh-pages` branch.
+
+The console probes those candidates on every load in the background, so the moment a backend
+answers `/health` the page upgrades itself from the recorded session to live. A free Render
+instance sleeps after ~15 minutes idle and takes ~50s to wake — the probe waits, and the recording
+holds the screen in the meantime rather than showing an error.
+
+`Procfile`, `runtime.txt` and `railway.json` are also included, so Railway, Fly and Heroku-style
+platforms work from the same repo.
 
 Optional: set `GEMINI_API_KEY` ([free tier](https://aistudio.google.com/apikey)) to replace the
 deterministic stub with real generation. Everything works without it.
+
+### Point the hosted console at your own laptop
+
+`https://sumeetredhu.github.io` is in the default CORS allowlist, so you can run the API locally
+and drive the public UI against it — useful for a demo where you want live uploads:
+
+```bash
+INDRA_STORAGE_BACKEND=memory INDRA_BOOTSTRAP_DEMO=true python -m uvicorn indra.main:app --port 8000
+```
+
+then open `https://sumeetredhu.github.io/INDRA/?api=http://localhost:8000`.
 
 ## What makes this different
 
