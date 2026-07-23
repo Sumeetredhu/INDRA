@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import asyncio
+import contextlib
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
@@ -39,7 +41,14 @@ async def _bootstrap_demo_corpus(orchestrator: IndraOrchestrator, settings: Sett
             logger.info("no demo corpus present; generating it")
             generate()
 
-        files = sorted(p for p in demo_dir.glob("*") if p.suffix.lower() in ingestible)
+        files = sorted(
+            p for p in demo_dir.glob("*")
+            if p.suffix.lower() in ingestible
+            # Skip the degraded scanned P&ID: it is the single heaviest file and exists only to
+            # exercise OCR tag-correction. A live backend gets P-101's connectivity from the clean
+            # drawing, so dropping it here keeps peak memory under a 512 MB free instance's ceiling.
+            and "scanned" not in p.stem.lower()
+        )
         ingested = 0
         for path in files:
             try:
@@ -63,13 +72,24 @@ def create_app(runtime_settings: Settings | None = None) -> FastAPI:
         orchestrator = IndraOrchestrator(active_settings)
         app.state.orchestrator = orchestrator
         await orchestrator.startup()
+
+        bootstrap_task: asyncio.Task[None] | None = None
         if active_settings.bootstrap_demo:
-            # Must run in *this* process: with the in-memory backend a separate bootstrap process
-            # would ingest into its own graph and exit, leaving the API serving an empty one.
-            await _bootstrap_demo_corpus(orchestrator, active_settings)
+            # Fire-and-forget, NOT awaited: a synchronous ingest here blocks lifespan startup, so
+            # uvicorn never reports "startup complete" and the platform health check times out
+            # before the corpus finishes loading. Running it as a background task lets /health
+            # answer immediately; the graph populates a minute or so later. It still runs in *this*
+            # process, which the in-memory backend requires — a separate process would ingest into
+            # its own graph and exit.
+            bootstrap_task = asyncio.create_task(_bootstrap_demo_corpus(orchestrator, active_settings))
+
         try:
             yield
         finally:
+            if bootstrap_task is not None and not bootstrap_task.done():
+                bootstrap_task.cancel()
+                with contextlib.suppress(asyncio.CancelledError):
+                    await bootstrap_task
             await orchestrator.shutdown()
 
     application = FastAPI(
