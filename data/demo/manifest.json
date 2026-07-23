@@ -1,0 +1,846 @@
+{
+  "schema_version": 1,
+  "generator": "scripts.generate_demo_data",
+  "seed": 20260722,
+  "reference_date": "2024-06-30",
+  "plant": "Bharat Vindhya Petrochemicals Ltd. — Unit-2 Utilities Block, Raigad, Maharashtra, India",
+  "corpus_filenames": [
+    "P-101_OEM_Manual.pdf",
+    "WO_2024_0342_P-101.pdf",
+    "Inspection_2024_0315_P-101.pdf",
+    "ShiftLog_2024_0614.pdf",
+    "Incident_2022_0820_P-101.pdf",
+    "RCA_2022_0825_P-101.pdf",
+    "P-101_P&ID.png",
+    "P-101_P&ID_scanned.png",
+    "Email_Retirement_Rajesh.pdf",
+    "SOP_Bearing_Replacement.pdf",
+    "Factory_Act_Section41b.pdf",
+    "Maintenance_Log_2022_2024.xlsx"
+  ],
+  "files": [
+    {
+      "filename": "P-101_OEM_Manual.pdf",
+      "size_bytes": 10782,
+      "sha256": "4a1ca6b19da939df487ba6d315d471fab6a5a82ae15f43b7cc13135e7fd812d8",
+      "document_type": "oem_manual",
+      "title": "Sulzer CP 150-400 Installation, Operation and Maintenance Manual — P-101",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2016-01-15",
+      "equipment_tags": [
+        "P-101",
+        "V-201",
+        "E-301",
+        "LP-101A"
+      ],
+      "people": [],
+      "key_facts": [
+        "Bearing replacement is mandatory at 85% wear.",
+        "Vibration alarm 7.1 mm/s RMS, trip 9.5 mm/s.",
+        "Lube oil header minimum 1.4 bar."
+      ],
+      "description": "The authority for every threshold the rest of the corpus is measured against."
+    },
+    {
+      "filename": "WO_2024_0342_P-101.pdf",
+      "size_bytes": 161734,
+      "sha256": "3f3e7f77c230528d314e81a018e06fd114e4043d3351d50c2c447d8ac30b9394",
+      "document_type": "work_order",
+      "title": "Work Order WO-2024-0342 — P-101 Vibration Anomaly Investigation",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2024-06-18",
+      "equipment_tags": [
+        "P-101",
+        "LP-101A",
+        "E-301"
+      ],
+      "people": [
+        "Rajesh Kumar",
+        "Anil Deshmukh"
+      ],
+      "key_facts": [
+        "Bearing wear measured at 78%.",
+        "Handwritten margin annotation 'bearing wear 78%' — low OCR confidence trigger.",
+        "States explicitly that no bearing replacement is scheduled."
+      ],
+      "description": "The open work order the demo's first diagnostic question lands on."
+    },
+    {
+      "filename": "Inspection_2024_0315_P-101.pdf",
+      "size_bytes": 7417,
+      "sha256": "c7c727d8e35df1d4df252d1b2e4122c4430a270ec6238329129f59196d1db9c1",
+      "document_type": "inspection_report",
+      "title": "Quarterly Mechanical Inspection INSP-2024-0315 — P-101",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2024-03-15",
+      "equipment_tags": [
+        "P-101"
+      ],
+      "people": [
+        "Priya Sharma"
+      ],
+      "key_facts": [
+        "Bearing wear 71%, vibration 5.8 mm/s.",
+        "'Wear pattern similar to 2022 failure' — the bridge to the incident report."
+      ],
+      "description": "The single sentence that connects the 2024 condition to the 2022 failure."
+    },
+    {
+      "filename": "ShiftLog_2024_0614.pdf",
+      "size_bytes": 4746,
+      "sha256": "a8004d37f61a7538d9c2a0900179dd7bd6fa84884fb4f076df104b3ca445941c",
+      "document_type": "shift_log",
+      "title": "Shift Log — B Shift (Night) 22:00 - 06:00, 2024-06-14",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2024-06-14",
+      "equipment_tags": [
+        "P-101",
+        "V-201",
+        "E-301"
+      ],
+      "people": [
+        "Anil Deshmukh",
+        "Suresh Patil"
+      ],
+      "key_facts": [
+        "Operator bypassed P-101 alarm twice during night shift",
+        "Two VT-1011 bypasses logged at 02:14 and 03:47."
+      ],
+      "description": "The operational signal nobody would have connected to the bearing."
+    },
+    {
+      "filename": "Incident_2022_0820_P-101.pdf",
+      "size_bytes": 7371,
+      "sha256": "8ac5417333bf4e3fa48c0f0372c59b92de06680a4b22207f014031c42b69d670",
+      "document_type": "incident_report",
+      "title": "Incident Report INC-2022-0820 — P-101 NDE Bearing Seizure",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2022-08-20",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "V-201",
+        "LP-101A"
+      ],
+      "people": [
+        "Rajesh Kumar",
+        "Anil Deshmukh",
+        "D. Krishnan"
+      ],
+      "key_facts": [
+        "14 hours downtime.",
+        "Rs 25,00,000 (Rs 25 lakh) total cost.",
+        "Precursor list that the 2024 condition now matches."
+      ],
+      "description": "The business case: what happens if the pattern repeats."
+    },
+    {
+      "filename": "RCA_2022_0825_P-101.pdf",
+      "size_bytes": 7946,
+      "sha256": "3a7c53df35d1f465fd1e1d568607a969c819ee41b7177e6d36c8e7c213aa4552",
+      "document_type": "root_cause_analysis",
+      "title": "Root Cause Analysis RCA-2022-0825 — P-101 NDE Bearing Seizure",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2022-08-25",
+      "equipment_tags": [
+        "P-101",
+        "LP-101A"
+      ],
+      "people": [
+        "Priya Sharma",
+        "Rajesh Kumar",
+        "D. Krishnan"
+      ],
+      "key_facts": [
+        "Root cause: lubrication failure via LP-101A wear.",
+        "Five-why chain and five corrective actions with owners."
+      ],
+      "description": "Names the mechanism, so the Copilot can explain *why*, not just *what*."
+    },
+    {
+      "filename": "Email_Retirement_Rajesh.pdf",
+      "size_bytes": 6323,
+      "sha256": "9beec39bb54243542b3b67986113e27048d6ca4d4850f1ec86bcfb45b66163fd",
+      "document_type": "email",
+      "title": "E-mail — Superannuation schedule FY2024-27 — Mechanical Maintenance and Utilities Operations",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2024-06-20",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "V-201",
+        "LP-101A"
+      ],
+      "people": [
+        "Meera Iyer",
+        "Rajesh Kumar",
+        "S. Ramaswamy",
+        "D. Krishnan"
+      ],
+      "key_facts": [
+        "Rajesh Kumar (EMP-1187), Senior Technician — Rotating Equipment, completes 23 years of service and retires in March 2027.",
+        "S. Ramaswamy (31 years) superannuates 2024-11-30 — the nearer cliff."
+      ],
+      "description": "The knowledge cliff, hiding in an HR e-mail nobody would think to search."
+    },
+    {
+      "filename": "SOP_Bearing_Replacement.pdf",
+      "size_bytes": 9735,
+      "sha256": "4fad60551ae70d1dbda3ca3ef4b0b2d0024ee387c685fd5da46c92e53c1c20b1",
+      "document_type": "sop",
+      "title": "SOP-MECH-014 Rev 3 — Bearing Replacement — Horizontal Centrifugal Pumps (Sulzer CP Series)",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2023-02-01",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "P-105"
+      ],
+      "people": [],
+      "key_facts": [
+        "240 minutes total across 12 steps.",
+        "Five hold points; flame heating explicitly prohibited."
+      ],
+      "description": "The procedural answer, with real steps and a real time budget."
+    },
+    {
+      "filename": "Factory_Act_Section41b.pdf",
+      "size_bytes": 6371,
+      "sha256": "452fcd14efedc1db35560d5ae5132aca4dd16b6e4b9a58cf66ba151e214dbbd4",
+      "document_type": "regulation",
+      "title": "Factory Act 1948 — Section 41(b) Extract and Compliance Note",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2023-04-01",
+      "equipment_tags": [
+        "V-201"
+      ],
+      "people": [],
+      "key_facts": [
+        "Section 41(b): monthly pressure vessel inspection, every 30 days.",
+        "Last V-201 examination on record: 2024-02-08."
+      ],
+      "description": "The obligation the audit measures V-201 against."
+    },
+    {
+      "filename": "Maintenance_Log_2022_2024.xlsx",
+      "size_bytes": 14325,
+      "sha256": "1bf10062eb3748480a810e2c543c673ea24eb44f4bbf032ded733d17ee8e237f",
+      "document_type": "spreadsheet",
+      "title": "Maintenance and Condition-Monitoring Log 2022-2024 — Unit-2 Utilities",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2024-06-18",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "P-105",
+        "V-201",
+        "E-301",
+        "LP-101A"
+      ],
+      "people": [
+        "Rajesh Kumar",
+        "Priya Sharma",
+        "S. Ramaswamy"
+      ],
+      "key_facts": [
+        "17 maintenance records and 24 condition readings across three years.",
+        "P-102 bearing seizure 2023-11-09 gives the fleet-pattern rule a second asset."
+      ],
+      "description": "Structured history: the trend line behind every claim the prose makes."
+    },
+    {
+      "filename": "P-101_P&ID.png",
+      "size_bytes": 93461,
+      "sha256": "efc6811514c1587691400ee3ddd1ed56311bc8562b79b7132dfc031dba4a0ccf",
+      "document_type": "pid_drawing",
+      "title": "P&ID — Unit-2 Boiler Feed Water System (P-101 / V-201 / E-301)",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2016-01-15",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "V-201",
+        "E-301",
+        "LP-101A"
+      ],
+      "people": [],
+      "key_facts": [
+        "V-201 -> P-101 -> E-301 process connectivity.",
+        "Valves HV-1012, CV-1013 and instruments VT-1011, PI-1015 rendered as ISO symbols."
+      ],
+      "description": "A real raster engineering drawing, drawn to be genuinely machine-parsable."
+    },
+    {
+      "filename": "P-101_P&ID_scanned.png",
+      "size_bytes": 757808,
+      "sha256": "1c72ca5148e216f40684533c6ecaf6a656859897a9fbd0725a90b2a0a0ddf27c",
+      "document_type": "pid_drawing",
+      "title": "P&ID — Unit-2 Boiler Feed Water System (scanned copy)",
+      "role": "corpus",
+      "pages": null,
+      "document_date": "2016-01-15",
+      "equipment_tags": [
+        "P-101",
+        "P-102",
+        "V-201",
+        "E-301",
+        "LP-101A"
+      ],
+      "people": [],
+      "key_facts": [
+        "Rotated, noisy, contrast-reduced, JPEG-degraded copy of the clean drawing.",
+        "Exercises the OCR tag-correction path (P-l0l -> P-101) for real."
+      ],
+      "description": "The same drawing after a photocopier and a flatbed scanner have had their way."
+    },
+    {
+      "filename": "photos/P-101_nameplate.jpg",
+      "size_bytes": 66152,
+      "sha256": "ec9eaa8aa69bc35ed138ff42a0829055e7361c44083911aa8e79627b1bb6b976",
+      "document_type": "unknown",
+      "title": "Equipment nameplate photograph — P-101",
+      "role": "asset",
+      "pages": null,
+      "document_date": "2024-06-30",
+      "equipment_tags": [
+        "P-101"
+      ],
+      "people": [],
+      "key_facts": [
+        "Synthetic field photo for the photo-to-query demo beat."
+      ],
+      "description": "Not part of the ingest corpus; input for the mobile agent's AR moment."
+    }
+  ],
+  "facts": {
+    "plant": {
+      "name": "Bharat Vindhya Petrochemicals Ltd.",
+      "short_name": "BVPL",
+      "unit": "Unit-2 Utilities Block",
+      "location": "Raigad, Maharashtra, India"
+    },
+    "reference_date": "2024-06-30",
+    "thresholds": {
+      "oem_bearing_wear_pct": 85.0,
+      "measured_bearing_wear_pct": 78.0,
+      "oem_vibration_mm_s_rms": 7.1,
+      "oem_bearing_temp_c": 95.0,
+      "oem_lube_pressure_bar_min": 1.4
+    },
+    "incident_2022": {
+      "incident_id": "INC-2022-0820",
+      "occurred_on": "2022-08-20",
+      "failure_mode": "NDE bearing seizure",
+      "downtime_hours": 14.0,
+      "cost_inr": 2500000.0,
+      "cost_text": "Rs 25,00,000 (Rs 25 lakh)",
+      "root_cause": "Lubrication failure. Internal wear in auxiliary lube oil pump LP-101A allowed the oil header pressure to decay below 1.4 bar, starving the P-101 non-drive-end bearing of oil film until the rolling elements welded to the outer race.",
+      "rca_id": "RCA-2022-0825"
+    },
+    "work_order_2024": {
+      "work_order_id": "WO-2024-0342",
+      "raised_on": "2024-06-18",
+      "status": "OPEN",
+      "assigned_to": "Rajesh Kumar",
+      "measured_bearing_wear_pct": 78.0,
+      "handwritten_note": "bearing wear 78%"
+    },
+    "alarm_bypass": {
+      "occurred_on": "2024-06-14",
+      "shift": "B Shift (Night) 22:00 - 06:00",
+      "note": "Operator bypassed P-101 alarm twice during night shift",
+      "instrument": "VT-1011",
+      "count": 2
+    },
+    "equipment": [
+      {
+        "tag": "P-101",
+        "name": "Boiler Feed Water Pump P-101",
+        "equipment_type": "centrifugal_pump",
+        "criticality": "A",
+        "manufacturer": "Sulzer",
+        "model": "CP 150-400",
+        "installed_on": "2016-04-12",
+        "oem_thresholds": {
+          "bearing_wear_pct": 85.0,
+          "vibration_mm_s_rms": 7.1,
+          "bearing_temp_c": 95.0,
+          "lube_oil_pressure_bar_min": 1.4
+        }
+      },
+      {
+        "tag": "P-102",
+        "name": "Boiler Feed Water Pump P-102 (standby)",
+        "equipment_type": "centrifugal_pump",
+        "criticality": "A",
+        "manufacturer": "Sulzer",
+        "model": "CP 150-400",
+        "installed_on": "2016-04-12",
+        "oem_thresholds": {
+          "bearing_wear_pct": 85.0,
+          "vibration_mm_s_rms": 7.1
+        }
+      },
+      {
+        "tag": "P-105",
+        "name": "Boiler Feed Water Pump P-105 (Unit-3)",
+        "equipment_type": "centrifugal_pump",
+        "criticality": "B",
+        "manufacturer": "Sulzer",
+        "model": "CP 150-400",
+        "installed_on": "2018-09-03",
+        "oem_thresholds": {
+          "bearing_wear_pct": 85.0
+        }
+      },
+      {
+        "tag": "V-201",
+        "name": "Deaerator Storage Vessel V-201",
+        "equipment_type": "pressure_vessel",
+        "criticality": "A",
+        "manufacturer": "Godrej Process Equipment",
+        "model": "DA-24-8.5",
+        "installed_on": "2016-02-28",
+        "oem_thresholds": {
+          "operating_pressure_bar_max": 8.5,
+          "dissolved_o2_ppb_max": 7.0
+        }
+      },
+      {
+        "tag": "E-301",
+        "name": "Feed Water Pre-Heater E-301",
+        "equipment_type": "heat_exchanger",
+        "criticality": "B",
+        "manufacturer": "Alfa Laval India",
+        "model": "TEMA BEM 500-4000",
+        "installed_on": "2016-03-20",
+        "oem_thresholds": {
+          "tube_side_dp_bar_max": 1.8
+        }
+      },
+      {
+        "tag": "LP-101A",
+        "name": "Auxiliary Lube Oil Pump LP-101A",
+        "equipment_type": "gear_pump",
+        "criticality": "B",
+        "manufacturer": "Rotodel",
+        "model": "RGP-18",
+        "installed_on": "2016-04-12",
+        "oem_thresholds": {
+          "discharge_pressure_bar_min": 1.4
+        }
+      }
+    ],
+    "people": [
+      {
+        "name": "Rajesh Kumar",
+        "employee_id": "EMP-1187",
+        "role": "Senior Technician — Rotating Equipment",
+        "years_experience": 23.0,
+        "retirement_on": "2027-03-31",
+        "expertise_tags": [
+          "P-101",
+          "P-102",
+          "LP-101A",
+          "V-201"
+        ],
+        "documented_contributions": 3
+      },
+      {
+        "name": "S. Ramaswamy",
+        "employee_id": "EMP-0904",
+        "role": "Foreman — Boiler & Utilities Operations",
+        "years_experience": 31.0,
+        "retirement_on": "2024-11-30",
+        "expertise_tags": [
+          "V-201",
+          "P-101",
+          "E-301"
+        ],
+        "documented_contributions": 1
+      },
+      {
+        "name": "Priya Sharma",
+        "employee_id": "EMP-2246",
+        "role": "Reliability Engineer",
+        "years_experience": 8.0,
+        "retirement_on": null,
+        "expertise_tags": [
+          "P-101",
+          "P-102",
+          "P-105",
+          "E-301"
+        ],
+        "documented_contributions": 4
+      },
+      {
+        "name": "Anil Deshmukh",
+        "employee_id": "EMP-1533",
+        "role": "Shift Supervisor — B Shift",
+        "years_experience": 15.0,
+        "retirement_on": null,
+        "expertise_tags": [
+          "P-101",
+          "V-201"
+        ],
+        "documented_contributions": 2
+      },
+      {
+        "name": "Suresh Patil",
+        "employee_id": "EMP-3120",
+        "role": "Panel Operator — Night Shift",
+        "years_experience": 6.0,
+        "retirement_on": null,
+        "expertise_tags": [
+          "P-101"
+        ],
+        "documented_contributions": 1
+      },
+      {
+        "name": "Meera Iyer",
+        "employee_id": "EMP-0771",
+        "role": "Head — Human Resources",
+        "years_experience": 19.0,
+        "retirement_on": null,
+        "expertise_tags": [],
+        "documented_contributions": 0
+      },
+      {
+        "name": "D. Krishnan",
+        "employee_id": "EMP-0615",
+        "role": "Maintenance Manager",
+        "years_experience": 21.0,
+        "retirement_on": null,
+        "expertise_tags": [
+          "P-101",
+          "E-301"
+        ],
+        "documented_contributions": 2
+      }
+    ],
+    "regulation": {
+      "regulation": "Factory Act 1948",
+      "clause": "Section 41(b)",
+      "obligation": "monthly pressure vessel inspection",
+      "frequency_days": 30,
+      "applies_to_tags": [
+        "V-201"
+      ],
+      "last_evidence_date": "2024-02-08",
+      "days_overdue": 113,
+      "penalty": "Section 92 — imprisonment for a term which may extend to two years, or a fine which may extend to Rs 1,00,000, or both; continuing contravention attracts a further fine of Rs 1,000 per day."
+    },
+    "procedure": {
+      "procedure_id": "SOP-MECH-014",
+      "title": "Bearing Replacement — Horizontal Centrifugal Pumps (Sulzer CP Series)",
+      "revision": "Rev 3",
+      "estimated_minutes": 240,
+      "step_count": 12
+    },
+    "cross_document_links": [
+      {
+        "link_id": "threshold_vs_measurement",
+        "claim": "P-101 bearing wear is at 78% against an OEM replacement limit of 85% — a number that exists in neither document alone.",
+        "documents": [
+          "P-101_OEM_Manual.pdf",
+          "WO_2024_0342_P-101.pdf"
+        ],
+        "probe_terms": [
+          "85",
+          "78",
+          "bearing wear"
+        ]
+      },
+      {
+        "link_id": "pattern_matches_2022",
+        "claim": "The March 2024 inspection calls the wear pattern similar to the 2022 failure; the 2022 incident report says that failure cost 14 hours and Rs 25 lakh.",
+        "documents": [
+          "Inspection_2024_0315_P-101.pdf",
+          "Incident_2022_0820_P-101.pdf"
+        ],
+        "probe_terms": [
+          "wear pattern similar to 2022 failure",
+          "14",
+          "25,00,000"
+        ]
+      },
+      {
+        "link_id": "root_cause_is_lubrication",
+        "claim": "The 2022 seizure was caused by lubrication failure originating in LP-101A.",
+        "documents": [
+          "Incident_2022_0820_P-101.pdf",
+          "RCA_2022_0825_P-101.pdf"
+        ],
+        "probe_terms": [
+          "lubrication failure",
+          "LP-101A"
+        ]
+      },
+      {
+        "link_id": "alarm_bypass_precedes_wear",
+        "claim": "An operator bypassed the P-101 vibration alarm twice on the night shift of 14 June 2024, while an open work order records bearing wear at 78%.",
+        "documents": [
+          "ShiftLog_2024_0614.pdf",
+          "WO_2024_0342_P-101.pdf"
+        ],
+        "probe_terms": [
+          "bypassed",
+          "VT-1011",
+          "78"
+        ]
+      },
+      {
+        "link_id": "expert_retirement",
+        "claim": "Rajesh Kumar, the only technician certified on the bearing replacement procedure, retires in March 2027 after 23 years.",
+        "documents": [
+          "Email_Retirement_Rajesh.pdf",
+          "WO_2024_0342_P-101.pdf",
+          "SOP_Bearing_Replacement.pdf"
+        ],
+        "probe_terms": [
+          "Rajesh Kumar",
+          "23",
+          "2027"
+        ]
+      },
+      {
+        "link_id": "process_connectivity",
+        "claim": "P-101 draws from V-201 and discharges to E-301; the drawing and the manual agree.",
+        "documents": [
+          "P-101_P&ID.png",
+          "P-101_OEM_Manual.pdf"
+        ],
+        "probe_terms": [
+          "V-201",
+          "E-301",
+          "P-101"
+        ]
+      },
+      {
+        "link_id": "fleet_pattern",
+        "claim": "The same NDE bearing failure mode has now occurred on two Sulzer CP 150-400 machines (P-101 in 2022, P-102 in 2023) with a third trending (P-105).",
+        "documents": [
+          "Maintenance_Log_2022_2024.xlsx",
+          "Incident_2022_0820_P-101.pdf"
+        ],
+        "probe_terms": [
+          "P-102",
+          "bearing seizure",
+          "P-105"
+        ]
+      },
+      {
+        "link_id": "statutory_gap",
+        "claim": "Section 41(b) requires monthly pressure vessel inspection; the last recorded V-201 examination is 2024-02-08.",
+        "documents": [
+          "Factory_Act_Section41b.pdf",
+          "Maintenance_Log_2022_2024.xlsx"
+        ],
+        "probe_terms": [
+          "41(b)",
+          "V-201",
+          "monthly"
+        ]
+      }
+    ]
+  },
+  "pid_ground_truth": {
+    "image": "P-101_P&ID.png",
+    "scanned_image": "P-101_P&ID_scanned.png",
+    "width": 1600,
+    "height": 1120,
+    "symbols": [
+      {
+        "tag": "V-201",
+        "symbol_class": "vessel",
+        "bbox": [
+          150,
+          240,
+          300,
+          600
+        ],
+        "label": "DEAERATOR STORAGE VESSEL"
+      },
+      {
+        "tag": "P-101",
+        "symbol_class": "pump",
+        "bbox": [
+          562,
+          642,
+          678,
+          758
+        ],
+        "label": "BFW PUMP - DUTY"
+      },
+      {
+        "tag": "P-102",
+        "symbol_class": "pump",
+        "bbox": [
+          562,
+          842,
+          678,
+          958
+        ],
+        "label": "BFW PUMP - STANDBY"
+      },
+      {
+        "tag": "LP-101A",
+        "symbol_class": "pump",
+        "bbox": [
+          360,
+          420,
+          440,
+          500
+        ],
+        "label": "AUX LUBE OIL PUMP"
+      },
+      {
+        "tag": "E-301",
+        "symbol_class": "heat_exchanger",
+        "bbox": [
+          880,
+          420,
+          1180,
+          560
+        ],
+        "label": "FEED WATER PRE-HEATER"
+      },
+      {
+        "tag": "HV-1012",
+        "symbol_class": "valve",
+        "bbox": [
+          378,
+          678,
+          422,
+          722
+        ],
+        "label": "SUCTION ISOLATION"
+      },
+      {
+        "tag": "CV-1013",
+        "symbol_class": "valve",
+        "bbox": [
+          678,
+          318,
+          722,
+          362
+        ],
+        "label": "DISCHARGE NON-RETURN"
+      },
+      {
+        "tag": "HV-3014",
+        "symbol_class": "valve",
+        "bbox": [
+          1208,
+          468,
+          1252,
+          512
+        ],
+        "label": "E-301 OUTLET ISOLATION"
+      },
+      {
+        "tag": "VT-1011",
+        "symbol_class": "instrument",
+        "bbox": [
+          743,
+          673,
+          797,
+          727
+        ],
+        "label": "VIBRATION TRANSMITTER"
+      },
+      {
+        "tag": "PI-1015",
+        "symbol_class": "instrument",
+        "bbox": [
+          743,
+          213,
+          797,
+          267
+        ],
+        "label": "DISCHARGE PRESSURE"
+      },
+      {
+        "tag": "PI-1016",
+        "symbol_class": "instrument",
+        "bbox": [
+          473,
+          353,
+          527,
+          407
+        ],
+        "label": "LUBE OIL HEADER PRESSURE"
+      },
+      {
+        "tag": "TI-2011",
+        "symbol_class": "instrument",
+        "bbox": [
+          373,
+          153,
+          427,
+          207
+        ],
+        "label": "V-201 OUTLET TEMPERATURE"
+      }
+    ],
+    "connections": [
+      {
+        "source": "V-201",
+        "target": "P-101",
+        "line_type": "process",
+        "pipe_spec": "6\"-BFW-1001-CS"
+      },
+      {
+        "source": "V-201",
+        "target": "P-102",
+        "line_type": "process",
+        "pipe_spec": "6\"-BFW-1001-CS"
+      },
+      {
+        "source": "P-101",
+        "target": "E-301",
+        "line_type": "process",
+        "pipe_spec": "4\"-BFW-1002-CS"
+      },
+      {
+        "source": "P-102",
+        "target": "E-301",
+        "line_type": "process",
+        "pipe_spec": "4\"-BFW-1002-CS"
+      },
+      {
+        "source": "E-301",
+        "target": "B-401",
+        "line_type": "process",
+        "pipe_spec": "4\"-BFW-1003-CS"
+      },
+      {
+        "source": "LP-101A",
+        "target": "P-101",
+        "line_type": "utility",
+        "pipe_spec": "1\"-LO-1010-CS"
+      }
+    ]
+  },
+  "summary": [
+    "Plant                 Bharat Vindhya Petrochemicals Ltd. — Unit-2 Utilities Block, Raigad, Maharashtra, India",
+    "Reference date        2024-06-30 (all lookbacks anchor here)",
+    "Equipment             P-101, P-102, P-105, V-201, E-301, LP-101A",
+    "People                Rajesh Kumar, S. Ramaswamy, Priya Sharma, Anil Deshmukh, Suresh Patil, Meera Iyer, D. Krishnan",
+    "OEM bearing limit     85%",
+    "Measured wear         78% (WO-2024-0342, 12 days before the reference date)",
+    "2022 failure          INC-2022-0820, 14 h, Rs 25,00,000 (Rs 25 lakh)",
+    "Statutory gap         Section 41(b) on V-201, 113 days overdue"
+  ]
+}

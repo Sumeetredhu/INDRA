@@ -1,0 +1,180 @@
+# DGMS Circulars — seeded compliance baseline for mining installations.
+#
+# The Directorate General of Mines Safety issues Technical, Legislative and General circulars under
+# the Mines Act 1952 and the Mines Rules / Metalliferous Mines Regulations. Circulars are numbered
+# "DGMS (Tech) Circular No. NN of YYYY"; the numbering below follows that convention.
+
+regulation: "DGMS Circulars"
+title: "DGMS Circulars under the Mines Act, 1952 and the subordinate Regulations"
+authority: "Directorate General of Mines Safety, Ministry of Labour and Employment"
+version: "Standing circulars in force at the installation"
+disclaimer: >-
+  Seeded baseline. Circular numbers and obligation text are a paraphrase written for machine
+  checking, not a reproduction of the issued circulars. Reconcile against the circular register
+  maintained by the mine manager before relying on this in a DGMS inspection.
+
+requirements:
+  - clause: "DGMS (Tech) Circular — winding and haulage ropes"
+    obligation: "half-yearly non-destructive testing of winding and haulage ropes"
+    text: >-
+      Every rope used for winding or haulage shall be examined along its full length and subjected to
+      non-destructive testing at the prescribed periodicity; the number of broken wires per lay
+      length, loss of metallic area and the capping condition shall be recorded, and the rope
+      recapped or replaced when the rejection criteria are reached.
+    frequency_days: 182
+    applies_to_types:
+      - winder_rope
+      - winding_rope
+      - haulage_rope
+      - rope
+      - winder
+      - haulage
+      - man_riding_system
+    evidence_types: [inspection_report]
+    required_evidence_fields: [loss_of_metallic_area, broken_wires, inspector]
+    penalty: >-
+      Contravention of the Mines Act 1952 read with the Coal Mines Regulations; prosecution of the
+      manager and agent, and prohibitory order under Section 22 stopping man-winding.
+    owner_role: "Mine Manager"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      Arrange NDT of the rope by an approved testing agency, record loss of metallic area against the
+      rejection limit and recap or replace the rope before resuming man-riding.
+    remediation_minutes: 480
+
+  - clause: "DGMS (Tech) Circular — ventilation standards"
+    obligation: "monthly ventilation survey and air quantity measurement"
+    text: >-
+      A ventilation survey shall be carried out at least once in every month covering the intake and
+      return airways and every ventilating district; the quantity of air, its velocity, and the
+      concentration of methane, carbon monoxide and carbon dioxide shall be measured and entered in
+      the ventilation register.
+    frequency_days: 30
+    applies_to_types:
+      - ventilation_fan
+      - main_fan
+      - booster_fan
+      - auxiliary_fan
+      - ventilation_district
+      - mine_section
+      - fan
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [air_quantity, methane_percent, surveyor]
+    penalty: >-
+      Contravention of the ventilation standards under the Regulations; prohibitory order withdrawing
+      persons from the district and prosecution of the ventilation officer and manager.
+    owner_role: "Ventilation Officer"
+    severity: CRITICAL
+    grace_days: 2
+    remediation: >-
+      Complete the district ventilation survey, record air quantity against the statutory minimum and
+      the gas concentrations, and restore the ventilation appliances found defective.
+    remediation_minutes: 300
+
+  - clause: "DGMS (Tech) Circular — gas detection instruments"
+    obligation: "monthly calibration of methane and carbon monoxide detectors"
+    text: >-
+      All portable and fixed methanometers, carbon monoxide detectors and multi-gas instruments used
+      underground shall be calibrated against certified span gas at the prescribed periodicity, and a
+      calibration record maintained instrument-wise with the pre- and post-calibration readings.
+    frequency_days: 30
+    applies_to_types:
+      - methanometer
+      - gas_detector
+      - co_detector
+      - multi_gas_detector
+      - detector
+      - environmental_monitor
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [calibration_gas, span_reading, technician]
+    penalty: >-
+      Use of an uncalibrated gas detection instrument underground; prohibitory action under Section 22
+      and prosecution for contravention of the Mines Rules.
+    owner_role: "Ventilation Officer"
+    severity: HIGH
+    grace_days: 3
+    remediation: >-
+      Calibrate the instrument with certified span gas, record pre- and post-calibration readings and
+      withdraw from service every instrument that fails the span check.
+    remediation_minutes: 45
+
+  - clause: "DGMS (Tech) Circular — HEMM braking systems"
+    obligation: "quarterly brake performance test of heavy earth moving machinery"
+    text: >-
+      Every dumper, dozer, shovel, excavator, loader and other heavy earth moving machine shall have
+      its service brake, secondary brake and parking brake tested on the prescribed gradient at the
+      rated load; the stopping distance and the parking brake holding capability shall be recorded.
+    frequency_days: 90
+    applies_to_types:
+      - dumper
+      - dozer
+      - excavator
+      - shovel
+      - loader
+      - grader
+      - hemm
+      - tipper
+      - drill_machine
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [stopping_distance, gradient, tested_by]
+    penalty: >-
+      Contravention of the DGMS standing order on HEMM operation; withdrawal of the machine from
+      service and prosecution following any brake-related accident.
+    owner_role: "Excavation Engineer"
+    severity: HIGH
+    grace_days: 7
+    remediation: >-
+      Test the machine on the designated test gradient at rated load, record stopping distance
+      against the acceptance limit and hold the machine until the brakes are restored.
+    remediation_minutes: 120
+
+  - clause: "DGMS (Tech) Circular — mine electrical equipment"
+    obligation: "quarterly inspection of flameproof gate-end boxes and earthing"
+    text: >-
+      Flameproof and intrinsically safe electrical apparatus used below ground shall be examined for
+      flame path integrity, gland condition and the continuity of the earthing system; the earth
+      leakage protection and earth fault trip settings shall be verified.
+    frequency_days: 90
+    applies_to_types:
+      - gate_end_box
+      - flameproof_panel
+      - electrical_panel
+      - switchgear
+      - transformer
+      - motor
+      - trailing_cable
+    evidence_types: [inspection_report]
+    required_evidence_fields: [resistance_ohm, inspector, findings]
+    penalty: >-
+      Ignition source in a gassy seam; prohibitory order under Section 22 and prosecution of the
+      electrical superintendent.
+    owner_role: "Electrical Superintendent"
+    severity: HIGH
+    grace_days: 7
+    remediation: >-
+      Inspect flame paths and glands, measure earth continuity resistance and prove the earth leakage
+      trip before re-energising the apparatus.
+    remediation_minutes: 150
+
+  - clause: "DGMS (Tech) Circular — respirable dust monitoring"
+    obligation: "quarterly respirable dust concentration monitoring"
+    text: >-
+      Personal and environmental respirable dust sampling shall be carried out in every occupational
+      group at the prescribed frequency; the measured concentration shall be compared with the
+      permissible limit for the free silica content of the dust and the results notified to the
+      workers concerned.
+    frequency_days: 90
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [dust_concentration, sampling_location, surveyor]
+    penalty: >-
+      Contravention of the occupational health provisions of the Mines Rules; liability under the
+      pneumoconiosis compensation provisions.
+    owner_role: "Occupational Health Officer"
+    severity: WARNING
+    grace_days: 15
+    remediation: >-
+      Run the quarterly gravimetric dust sampling round, compare against the permissible limit for
+      the measured free silica content and issue the results to the occupational groups sampled.
+    remediation_minutes: 480

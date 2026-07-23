@@ -1,0 +1,264 @@
+# The Factories Act, 1948 — seeded compliance baseline.
+#
+# One file per entry in ``settings.regulations``; the filename is the slug of that entry
+# ("Factory Act 1948" -> factory_act_1948.yaml). Loaded by ``requirements.py`` into
+# ``RegulatoryRequirement`` so gap detection works before any regulation PDF is uploaded.
+#
+# Every requirement here is *mechanically checkable*: it names a frequency, the equipment types it
+# binds, and the evidence that discharges it. An obligation that cannot be checked has not been
+# parsed — it has only been quoted.
+
+regulation: "Factory Act 1948"
+title: "The Factories Act, 1948 (Act No. 63 of 1948) read with the State Factories Rules"
+authority: "Chief Inspector of Factories, State Directorate of Industrial Safety and Health"
+version: "1948, as amended by Act 20 of 1987"
+disclaimer: >-
+  Seeded baseline. Clause numbering follows the Act; obligation text is a paraphrase written for
+  machine checking, not a reproduction of the gazetted text. Verify against the current State
+  Factories Rules and the Inspectorate's standing orders before relying on this in an audit.
+
+requirements:
+  - clause: "Section 41(b)"
+    obligation: "monthly pressure vessel inspection"
+    text: >-
+      Every pressure vessel or pressure plant employed in or incidental to a hazardous process shall
+      be examined externally, and its protective and safety devices verified as functional, at
+      intervals not exceeding one month by a competent person, and the result of every such
+      examination shall be entered in the prescribed register.
+    frequency_days: 30
+    applies_to_types:
+      - pressure_vessel
+      - vessel
+      - boiler
+      - steam_drum
+      - air_receiver
+      - receiver
+      - accumulator
+      - autoclave
+      - reactor
+      - separator
+      - knock_out_drum
+      - deaerator
+      - heat_exchanger
+      - exchanger
+      - column
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, findings]
+    penalty: >-
+      Section 92 — imprisonment up to two years or fine up to INR 1,00,000, or both; continuing
+      contravention attracts a further fine up to INR 1,000 per day. Section 96A applies where the
+      contravention concerns a hazardous process.
+    owner_role: "Factory Manager (Occupier's nominee)"
+    severity: HIGH
+    grace_days: 0
+    remediation: >-
+      Schedule the monthly external examination with a competent person and file the signed
+      inspection report against the vessel tag in the pressure vessel register.
+    remediation_minutes: 120
+
+  - clause: "Section 31"
+    obligation: "annual thorough examination and pressure test of pressure plant"
+    text: >-
+      Where any plant or machinery is operated at a pressure above atmospheric pressure, effective
+      measures shall be taken to ensure that the safe working pressure is not exceeded; the plant
+      shall be thoroughly examined and tested by a competent person at the periodicity prescribed by
+      the State Rules, and a certificate of the examination retained at the factory.
+    frequency_days: 365
+    applies_to_types:
+      - pressure_vessel
+      - vessel
+      - boiler
+      - air_receiver
+      - receiver
+      - accumulator
+      - autoclave
+      - reactor
+      - heat_exchanger
+      - exchanger
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, test_pressure, thickness_mm, certificate_number]
+    penalty: >-
+      Section 92 — fine up to INR 1,00,000 and prohibition of use of the plant by written order of
+      the Inspector under Section 40(2) until the examination is produced.
+    owner_role: "Head — Mechanical Inspection"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Arrange a thorough examination including ultrasonic thickness survey and hydrostatic or
+      equivalent pressure test by a competent person, and lodge Form 13 with the Inspectorate.
+    remediation_minutes: 480
+
+  - clause: "Section 21"
+    obligation: "half-yearly examination of machinery guarding and fencing"
+    text: >-
+      Every dangerous part of any machinery — every moving part of a prime mover, every flywheel,
+      headrace, tailrace, every part of transmission machinery and every dangerous part of any other
+      machinery — shall be securely fenced by safeguards of substantial construction that are kept in
+      position while the parts are in motion or in use.
+    frequency_days: 182
+    applies_to_types:
+      - pump
+      - compressor
+      - blower
+      - fan
+      - agitator
+      - mixer
+      - conveyor
+      - crusher
+      - mill
+      - centrifuge
+      - motor
+      - turbine
+      - gearbox
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [inspector, findings]
+    penalty: >-
+      Section 92 — fine up to INR 1,00,000; where the contravention causes death or serious bodily
+      injury the fine shall not be less than INR 25,000 (death) or INR 5,000 (serious injury).
+    owner_role: "Safety Officer"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Carry out a guarding audit of the asset, restore or replace missing fixed guards and
+      interlocks, and record the verification against the equipment tag.
+    remediation_minutes: 90
+
+  - clause: "Section 28"
+    obligation: "six-monthly thorough examination of hoists and lifts"
+    text: >-
+      Every hoist and lift shall be of good mechanical construction, sound material and adequate
+      strength, properly maintained, and thoroughly examined by a competent person at least once in
+      every period of six months; a register containing the prescribed particulars of every such
+      examination shall be kept.
+    frequency_days: 182
+    applies_to_types:
+      - hoist
+      - lift
+      - elevator
+      - man_riding_cage
+      - goods_lift
+      - winch
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, safe_working_load, findings]
+    penalty: "Section 92 — fine up to INR 1,00,000 and prohibition of use pending re-examination."
+    owner_role: "Head — Mechanical Maintenance"
+    severity: HIGH
+    grace_days: 10
+    remediation: >-
+      Book the six-monthly thorough examination, verify the safe working load plate and overload
+      device, and enter the result in the hoists and lifts register.
+    remediation_minutes: 180
+
+  - clause: "Section 29"
+    obligation: "annual examination of lifting machines, chains, ropes and lifting tackle"
+    text: >-
+      Every lifting machine, chain, rope and lifting tackle shall be of good construction and
+      adequate strength, thoroughly examined by a competent person at least once in every period of
+      twelve months, and shall be plainly marked with its safe working load.
+    frequency_days: 365
+    applies_to_types:
+      - crane
+      - eot_crane
+      - gantry_crane
+      - mobile_crane
+      - chain_pulley_block
+      - lifting_tackle
+      - sling
+      - jib
+      - hoist
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, safe_working_load, certificate_number]
+    penalty: >-
+      Section 92 — fine up to INR 1,00,000; the Inspector may prohibit use of the appliance under
+      Section 40(2) until a fresh certificate is produced.
+    owner_role: "Head — Mechanical Maintenance"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Arrange load testing and thorough examination in Form 10 by a competent person and re-stencil
+      the safe working load on the appliance.
+    remediation_minutes: 240
+
+  - clause: "Section 36"
+    obligation: "annual revalidation of the confined space entry procedure"
+    text: >-
+      No worker shall be required or allowed to enter any chamber, tank, vat, pit, pipe, flue or
+      other confined space in which dangerous fumes are likely to be present unless it is provided
+      with a manhole or other effective means of egress, and unless a written permit-to-work
+      procedure certified for that space is in force.
+    frequency_days: 365
+    applies_to_types:
+      - vessel
+      - pressure_vessel
+      - storage_tank
+      - tank
+      - sump
+      - pit
+      - silo
+      - digester
+      - reactor
+      - column
+    evidence_types: [sop, inspection_report]
+    required_evidence_fields: [revision, approved_by]
+    current_revision: "3"
+    superseded_revisions: ["0", "1", "2"]
+    penalty: >-
+      Section 92 read with Section 96A — fine up to INR 1,00,000; contravention connected with a
+      hazardous process attracts imprisonment up to seven years where it causes death.
+    owner_role: "Safety Officer"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      Reissue the confined space entry SOP at the current revision, retrain the entry supervisors
+      and attach the approval signature page to the equipment record.
+    remediation_minutes: 240
+
+  - clause: "Section 40A"
+    obligation: "annual structural stability certification"
+    text: >-
+      If it appears to the Inspector that any building or part of a building or any road, bridge or
+      other structure in a factory is in such a state of disrepair as is likely to be detrimental to
+      the health and welfare of the workers, the occupier shall carry out such repairs or alterations
+      as may be specified; a competent person's stability certificate shall be maintained.
+    frequency_days: 365
+    applies_to_types:
+      - storage_tank
+      - tank
+      - silo
+      - structure
+      - building
+      - stack
+      - chimney
+      - cooling_tower
+      - pipe_rack
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, certificate_number, findings]
+    penalty: "Section 92 — fine up to INR 1,00,000 and a written order restricting occupation of the structure."
+    owner_role: "Head — Civil and Structural"
+    severity: WARNING
+    grace_days: 30
+    remediation: >-
+      Commission a structural stability assessment by a chartered civil engineer and file the
+      stability certificate against the asset.
+    remediation_minutes: 480
+
+  - clause: "Section 41C(a)"
+    obligation: "half-yearly occupational health surveillance record for hazardous process workers"
+    text: >-
+      Every occupier of a factory involving a hazardous process shall maintain accurate and
+      up-to-date medical records of the workers who are exposed to any chemical, toxic or harmful
+      substance manufactured, stored, handled or transported in the factory.
+    frequency_days: 182
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [examining_authority, findings]
+    penalty: >-
+      Section 96A — imprisonment up to seven years and fine up to INR 2,00,000 where the failure
+      results in death or serious bodily injury; otherwise Section 92 applies.
+    owner_role: "Factory Medical Officer"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Complete the half-yearly medical surveillance round for the exposed cohort and lodge the
+      consolidated health record with the Certifying Surgeon.
+    remediation_minutes: 960

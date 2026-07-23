@@ -1,0 +1,41 @@
+# One-click backend deploy for Render (https://render.com) — free tier, no card required.
+#
+# Deploy: https://render.com/deploy?repo=https://github.com/Sumeetredhu/INDRA
+# Render reads this file, builds the API, and gives you a public HTTPS URL. Paste that URL into the
+# console's API field and the hosted frontend switches from the recorded session to your live API.
+#
+# The free instance sleeps after ~15 minutes idle and takes ~50s to wake. That is fine for a demo
+# and is the reason the frontend also ships a recorded session — the public link is never dead.
+
+services:
+  - type: web
+    name: indra-api
+    runtime: python
+    plan: free
+    region: singapore          # closest to an Indian audience; change if you prefer
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn indra.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      # No Neo4j / Chroma / Redis containers on the free tier, so every store binds in-process.
+      # This is exactly the fallback path documented in docs/DECISIONS.md D1.
+      - key: INDRA_STORAGE_BACKEND
+        value: memory
+      - key: INDRA_LOG_JSON
+        value: "true"
+      - key: INDRA_ENVIRONMENT
+        value: production
+      # Ingest the demo corpus in-process at startup so the instance is never an empty shell.
+      - key: INDRA_BOOTSTRAP_DEMO
+        value: "true"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # Allow the GitHub Pages origin to call this API.
+      - key: INDRA_CORS_ORIGINS
+        value: https://sumeetredhu.github.io,http://localhost:5173,http://127.0.0.1:5173
+      # Optional: paste a Gemini key from https://aistudio.google.com/apikey to replace the
+      # deterministic stub with real generation. Everything works without it.
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false

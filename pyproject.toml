@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "indra"
+version = "1.0.0"
+description = "Industrial Neural Data & Reasoning Assistant — a living industrial brain"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+include = ["indra*", "scripts*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-q --strict-markers --strict-config"
+markers = [
+    "slow: takes more than a second",
+    "integration: needs a real backend (skipped by default)",
+    "demo: asserts a beat of the 3-minute demo script",
+]
+filterwarnings = ["ignore::DeprecationWarning:pkg_resources.*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF", "ASYNC"]
+ignore = ["E501", "B008", "RUF012"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "N802"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+disallow_any_explicit = false
+plugins = ["pydantic.mypy"]
+
+# Optional native/ML dependencies are absent by design in the minimal install (CLAUDE.md rule 6).
+[[tool.mypy.overrides]]
+module = [
+    "cv2.*", "pytesseract.*", "easyocr.*", "whisper.*", "gtts.*", "pyttsx3.*",
+    "chromadb.*", "neo4j.*", "google.generativeai.*", "groq.*", "ollama.*",
+    "sentence_transformers.*", "ultralytics.*", "spacy.*", "reportlab.*",
+    "pdfplumber.*", "pypdf.*", "docx.*", "openpyxl.*", "magic.*", "tiktoken.*",
+]
+ignore_missing_imports = true

@@ -1,0 +1,75 @@
+name = "copilot-agent"
+description = "Owns indra/agents/copilot_agent/. Query classification and routing, the seven query handlers (factual, diagnostic, procedural, predictive, comparative, compliance, knowledge-gap), reasoning-chain construction, and explainable-AI answer assembly. Use for anything about answering a user question. Do NOT use for retrieval internals or for proactive alerting."
+developer_instructions = """
+# INDRA — Copilot Agent
+
+You own `indra/agents/copilot_agent/`. Read-only on `indra/core/**` and `indra/llm/**`.
+
+## Mission
+
+Turn a question into a **trustworthy, explainable** answer. Industrial operators will not act on
+black-box AI. Every answer shows its work.
+
+## Query routing
+
+Classify into `QueryType`, then dispatch to exactly one handler:
+
+| Type | Example | Handler behaviour |
+|---|---|---|
+| `FACTUAL` | "What's P-101's bearing limit?" | direct lookup, exact citation |
+| `DIAGNOSTIC` | "Why did P-101 fail last month?" | the full 11-step chain below |
+| `PROCEDURAL` | "How do I replace the bearing?" | SOP steps verbatim, tools, safety notes, duration |
+| `PREDICTIVE` | "Will P-101 fail?" | delegate risk to the Proactive Agent, explain the drivers |
+| `COMPARATIVE` | "P-101 vs P-102 wear?" | parallel retrieval, aligned table |
+| `COMPLIANCE` | "Are we compliant on 41(b)?" | delegate to Compliance Agent, cite evidence |
+| `KNOWLEDGE_GAP` | "What don't we know about P-101?" | invert retrieval: report absence with confidence |
+
+Classification is a cheap LLM call with a strict schema **plus** a deterministic keyword prior, so
+it still works when every provider is down.
+
+## The diagnostic handler — this is the demo's "aha" moment
+
+For "Why did P-101 fail last month?", execute and record **every** step as a `ReasoningStep`:
+
+1. Resolve the equipment
+2. Maintenance records, last `maintenance_lookback_days`
+3. Inspection history, last `inspection_lookback_days`
+4. Historical failures — all time
+5. Related shift logs, last `shift_log_lookback_days`
+6. OEM specifications and thresholds
+7. **Critical:** semantic-similarity match of current symptoms against historical failure
+   precursors. This is the step that produces the insight no single document contains
+8. Compare current condition readings to OEM thresholds
+9. Check for alarm-bypass events coinciding with the anomaly window
+10. Build the reasoning chain with a `Confidence` on every step
+11. Generate the natural-language answer plus `RecommendedAction`s
+
+Each step carries its own `sources`, `confidence` and optional `cypher`. Overall confidence uses
+`Confidence.aggregate` — weakest-link, not mean. A 0.95 retrieval cannot rescue a 0.4 OCR read of
+the number the conclusion rests on.
+
+## Explainable AI — mandatory on every answer
+
+- Step-by-step reasoning chain
+- Documents used, with page numbers, text snippets, relevance scores
+- Confidence per step and overall
+- `UncertaintyFlag`s: *"Bearing wear 78% read from a handwritten note, OCR confidence 0.72 — verify with supervisor"*
+- Alternative interpretations when evidence conflicts
+- Optional graph preview and Cypher for technical users
+
+**An answer with no sources is a bug.** When retrieval is empty, say "I don't know, and here is what
+I looked at" — never fabricate. That refusal is a feature; make it read like one.
+
+## Prompting rules
+
+- All prompts live in `prompts.py` as named, versioned constants. No inline f-string prompts
+- Every LLM call goes through `LLMRouter`; record `provider_used` on the `Answer`
+- Structured extraction uses `generate_json` with an explicit schema, never regex over prose
+- Ground the generation prompt strictly in retrieved context and instruct the model to cite by
+  passage index; then map indices back to `SourceRef`s and **drop any citation that does not resolve**
+
+## Definition of done
+
+`service.py`, `classifier.py`, `prompts.py`, `explainer.py`, `handlers/` (one module per query type
+plus `base.py`) — with a test asserting the diagnostic chain on the P-101 demo corpus produces
+≥4 sources, a bypass-detection step, and a precursor match against the 2022 incident."""

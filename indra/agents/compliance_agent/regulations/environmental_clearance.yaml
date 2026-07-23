@@ -1,0 +1,186 @@
+# Environmental Clearance — seeded compliance baseline.
+#
+# Covers the standard conditions attached to an Environmental Clearance granted under the EIA
+# Notification 2006, together with the Consent to Operate issued under the Water (Prevention and
+# Control of Pollution) Act 1974 and the Air (Prevention and Control of Pollution) Act 1981, and
+# the Hazardous and Other Wastes (Management and Transboundary Movement) Rules 2016.
+
+regulation: "Environmental Clearance"
+title: "Environmental Clearance conditions (EIA Notification 2006) and Consent to Operate"
+authority: "MoEFCC Regional Office and the State Pollution Control Board"
+version: "Standard conditions; site-specific conditions govern where stricter"
+disclaimer: >-
+  Seeded baseline. Condition references and obligation text are a paraphrase written for machine
+  checking. The operative document is the clearance letter and the Consent to Operate issued for
+  this site — reconcile every periodicity below against those conditions.
+
+requirements:
+  - clause: "EC Condition A(i)"
+    obligation: "quarterly calibration of continuous emission monitoring systems"
+    text: >-
+      Continuous emission monitoring systems shall be installed on every stack attached to a process
+      or utility source, connected to the State Board and CPCB servers, and calibrated at the
+      prescribed periodicity against reference method measurements; data availability shall not fall
+      below the level specified in the clearance.
+    frequency_days: 90
+    applies_to_types:
+      - stack
+      - chimney
+      - cems
+      - boiler
+      - furnace
+      - heater
+      - incinerator
+      - dg_set
+      - kiln
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [analyser_drift, reference_method, technician]
+    penalty: >-
+      Direction under Section 5 of the Environment (Protection) Act 1986; closure direction and
+      forfeiture of the bank guarantee lodged with the State Board on persistent data loss.
+    owner_role: "Head — Environment"
+    severity: HIGH
+    grace_days: 10
+    remediation: >-
+      Calibrate the analyser against the reference method, correct the zero and span drift and
+      restore uninterrupted data transmission to the State Board and CPCB servers.
+    remediation_minutes: 240
+
+  - clause: "EC Condition A(iv)"
+    obligation: "monthly ambient air quality monitoring at the designated stations"
+    text: >-
+      Ambient air quality shall be monitored at the stations fixed in consultation with the State
+      Board for the parameters specified in the National Ambient Air Quality Standards, and the
+      results submitted to the Regional Office and the State Board.
+    frequency_days: 30
+    applies_to_types: ["*"]
+    evidence_types: [spreadsheet, inspection_report]
+    required_evidence_fields: [station, pm10, pm25, so2, nox]
+    penalty: >-
+      Breach of an Environmental Clearance condition — show-cause notice from the Regional Office and
+      liability under Section 15 of the Environment (Protection) Act 1986.
+    owner_role: "Head — Environment"
+    severity: WARNING
+    grace_days: 10
+    remediation: >-
+      Complete the monthly ambient monitoring round at all designated stations through a NABL
+      accredited laboratory and upload the results to the State Board portal.
+    remediation_minutes: 480
+
+  - clause: "EC Condition B(ii)"
+    obligation: "monthly effluent quality analysis at the treatment plant outlet"
+    text: >-
+      Treated effluent shall conform to the standards prescribed in the consent; the final outlet
+      shall be sampled and analysed at the prescribed frequency for pH, biochemical oxygen demand,
+      chemical oxygen demand, total suspended solids, oil and grease and the site-specific
+      parameters, and the flow meter and online analysers kept in working order.
+    frequency_days: 30
+    applies_to_types:
+      - effluent_treatment_plant
+      - etp
+      - stp
+      - sewage_treatment_plant
+      - outfall
+      - guard_pond
+      - clarifier
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [ph, cod, bod, tss, laboratory]
+    penalty: >-
+      Contravention of the Consent to Operate under Section 25 of the Water Act 1974 — prosecution
+      under Section 43 and closure direction under Section 33A.
+    owner_role: "Head — Environment"
+    severity: HIGH
+    grace_days: 5
+    remediation: >-
+      Draw the outlet sample, complete the analysis through a NABL accredited laboratory and correct
+      every parameter exceeding the consented limit before the next discharge cycle.
+    remediation_minutes: 300
+
+  - clause: "EC Condition B(v)"
+    obligation: "half-yearly hazardous waste manifest and Form 4 return reconciliation"
+    text: >-
+      Hazardous waste shall be stored in a designated area not exceeding ninety days and disposed of
+      only through an authorised treatment, storage and disposal facility; the manifest system in
+      Form 10 shall be maintained and the annual return in Form 4 filed with the State Board.
+    frequency_days: 182
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [manifest_number, quantity, tsdf]
+    penalty: >-
+      Contravention of the Hazardous and Other Wastes Rules 2016 — cancellation of the authorisation
+      and prosecution under Section 15 of the Environment (Protection) Act 1986.
+    owner_role: "Head — Environment"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Reconcile the Form 10 manifests against the TSDF acknowledgements, clear stock older than the
+      permitted storage period and file the Form 4 return.
+    remediation_minutes: 480
+
+  - clause: "EC Condition C(iii)"
+    obligation: "half-yearly compliance report to the MoEFCC Regional Office"
+    text: >-
+      A compliance report against every condition of the Environmental Clearance shall be submitted
+      to the Regional Office of the Ministry, the Central Pollution Control Board and the State Board
+      on the first day of June and the first day of December of each calendar year, and displayed on
+      the company website.
+    frequency_days: 182
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, regulation]
+    required_evidence_fields: [submitted_to, period, acknowledgement]
+    penalty: >-
+      Non-submission is itself a clearance violation — the Regional Office may recommend revocation of
+      the clearance under the EIA Notification 2006.
+    owner_role: "Head — Environment"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Compile the condition-wise compliance status with supporting monitoring data, submit to the
+      Regional Office, CPCB and the State Board, and publish it on the company website.
+    remediation_minutes: 960
+
+  - clause: "Consent to Operate — Water Act s.25 / Air Act s.21"
+    obligation: "five-yearly renewal of the Consent to Operate"
+    text: >-
+      No industry shall operate any outlet for the discharge of sewage or trade effluent, or operate
+      any industrial plant in an air pollution control area, except with the previous consent of the
+      State Board and in accordance with the conditions and validity endorsed on that consent.
+    frequency_days: 1825
+    applies_to_types: ["*"]
+    evidence_types: [regulation, inspection_report]
+    required_evidence_fields: [consent_number, validity]
+    penalty: >-
+      Operating without a valid consent attracts closure direction under Section 33A of the Water Act
+      and Section 31A of the Air Act, disconnection of electricity and water supply, and prosecution.
+    owner_role: "Occupier / Unit Head"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      File the consent renewal application with the consent fee, the latest analysis reports and the
+      environmental statement, and record the renewed consent number and validity date.
+    remediation_minutes: 1440
+
+  - clause: "EC Condition D(ii)"
+    obligation: "half-yearly groundwater quality monitoring from the piezometer network"
+    text: >-
+      Groundwater quality shall be monitored from the piezometers installed upstream and downstream
+      of the plant and the ash or waste storage areas; the water table and the concentration of the
+      site-specific parameters shall be recorded and reported with the compliance report.
+    frequency_days: 182
+    applies_to_types:
+      - piezometer
+      - borewell
+      - groundwater_well
+      - ash_pond
+      - landfill
+      - waste_storage_area
+    evidence_types: [spreadsheet, inspection_report]
+    required_evidence_fields: [water_table, laboratory, sampling_location]
+    penalty: "Breach of an Environmental Clearance condition — show-cause notice and directions under Section 5 of the EP Act 1986."
+    owner_role: "Head — Environment"
+    severity: WARNING
+    grace_days: 20
+    remediation: >-
+      Sample the upstream and downstream piezometers, record the water table depth and analyse the
+      site-specific parameters through a NABL accredited laboratory.
+    remediation_minutes: 300

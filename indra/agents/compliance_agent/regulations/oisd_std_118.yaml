@@ -1,0 +1,176 @@
+# OISD-STD-118 — seeded compliance baseline.
+#
+# Oil Industry Safety Directorate standards are recommendatory until adopted by the PNGRB or written
+# into a licence condition, at which point they are enforced through the operator's own management
+# system and PNGRB (T4S) audits. They are tracked here because that is exactly how an Indian refinery
+# or gas installation is actually audited.
+
+regulation: "OISD-STD-118"
+title: "OISD-STD-118 — Layouts for Oil and Gas Installations"
+authority: "Oil Industry Safety Directorate, Ministry of Petroleum and Natural Gas"
+version: "Revision applicable at site; verify the edition in force"
+disclaimer: >-
+  Seeded baseline. Clause numbers and obligation text are a paraphrase written for machine checking.
+  Confirm against the edition of OISD-STD-118 held in the site document control system before using
+  this in a statutory or PNGRB audit response.
+
+requirements:
+  - clause: "Clause 5.2"
+    obligation: "annual verification of statutory inter-unit safety distances"
+    text: >-
+      The minimum safety distances between process units, storage, utilities, flare and the
+      installation boundary shall be maintained as laid down in the layout schedules; any addition,
+      alteration or temporary facility shall be reviewed against the approved layout and the
+      as-built plot plan revalidated.
+    frequency_days: 365
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, pid_drawing]
+    required_evidence_fields: [inspector, findings]
+    penalty: >-
+      Non-conformity recorded in the PNGRB T4S audit and OISD external safety audit; may be escalated
+      to a licence condition breach and suspension of the authorisation to operate.
+    owner_role: "Head — Process Safety"
+    severity: WARNING
+    grace_days: 30
+    remediation: >-
+      Walk the plot plan against the approved layout, close out encroachments and temporary
+      structures, and revalidate the as-built drawing in document control.
+    remediation_minutes: 480
+
+  - clause: "Clause 6.4"
+    obligation: "monthly fire water pump availability and auto-start test"
+    text: >-
+      Fire water pumps, including the jockey pump and the diesel engine driven standby, shall be run
+      on auto-start at the design flow and discharge pressure; start-up time, suction condition,
+      discharge pressure and engine parameters shall be recorded.
+    frequency_days: 30
+    applies_to_types:
+      - fire_water_pump
+      - fire_pump
+      - jockey_pump
+      - diesel_fire_pump
+      - pump
+    applies_to_tags: []
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [discharge_pressure, start_time, technician]
+    penalty: >-
+      Fire protection non-availability; adverse finding in the OISD external safety audit and a
+      reportable deficiency under the site's emergency response plan.
+    owner_role: "Fire and Safety Officer"
+    severity: CRITICAL
+    grace_days: 3
+    remediation: >-
+      Run the monthly auto-start test at rated flow, record start-up time and discharge pressure,
+      and rectify any failure to attain rated pressure within the same shift.
+    remediation_minutes: 90
+
+  - clause: "Clause 6.7"
+    obligation: "quarterly hydrant and monitor network pressure test"
+    text: >-
+      The fire water ring main, hydrants, monitors and water-cum-foam monitors shall be tested at the
+      remotest point to confirm the design residual pressure, and all isolation valves confirmed to
+      be in the open and car-sealed condition.
+    frequency_days: 90
+    applies_to_types:
+      - fire_hydrant
+      - hydrant
+      - fire_water_network
+      - fire_monitor
+      - deluge_valve
+      - foam_system
+    evidence_types: [inspection_report]
+    required_evidence_fields: [residual_pressure, technician]
+    penalty: "Adverse OISD external safety audit finding; degraded fire protection rating for the installation."
+    owner_role: "Fire and Safety Officer"
+    severity: HIGH
+    grace_days: 7
+    remediation: >-
+      Test the remotest hydrant and monitor, log residual pressure against the design figure, and
+      raise work orders for every valve or nozzle found passing.
+    remediation_minutes: 240
+
+  - clause: "Clause 7.3"
+    obligation: "half-yearly integrity inspection of flameproof electrical fittings in hazardous areas"
+    text: >-
+      All electrical equipment installed in Zone 0, Zone 1 and Zone 2 areas shall be of the certified
+      type for that zone, and the flameproof integrity of enclosures, glands, flame paths and cable
+      terminations shall be inspected and certified at the prescribed periodicity.
+    frequency_days: 182
+    applies_to_types:
+      - electrical_panel
+      - junction_box
+      - motor
+      - lighting_fitting
+      - local_control_station
+      - transformer
+      - switchgear
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, zone, findings]
+    penalty: >-
+      Breach of the Central Electricity Authority (Measures relating to Safety and Electric Supply)
+      Regulations and the site's hazardous area classification; ignition source risk in a licensed area.
+    owner_role: "Head — Electrical Maintenance"
+    severity: HIGH
+    grace_days: 15
+    remediation: >-
+      Inspect flame paths, glands and certification plates for the asset, restore the flameproof
+      integrity and record the zone classification on the inspection sheet.
+    remediation_minutes: 120
+
+  - clause: "Clause 8.2"
+    obligation: "annual earthing and bonding resistance test"
+    text: >-
+      All tanks, vessels, pipelines, loading arms, road tanker gantries and rotating equipment shall
+      be electrically continuous and earthed; the earth resistance shall be measured and shall not
+      exceed the value specified for the class of installation.
+    frequency_days: 365
+    applies_to_types:
+      - storage_tank
+      - tank
+      - vessel
+      - pressure_vessel
+      - pump
+      - compressor
+      - loading_gantry
+      - loading_arm
+      - flare
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [resistance_ohm, tested_by]
+    penalty: >-
+      Static ignition hazard; adverse OISD audit finding and a deviation against the electrical
+      safety clearance for the installation.
+    owner_role: "Head — Electrical Maintenance"
+    severity: HIGH
+    grace_days: 30
+    remediation: >-
+      Megger the earth pits and bonding straps for the asset, record the measured resistance in ohms
+      against the acceptance limit and replace corroded bonding jumpers.
+    remediation_minutes: 120
+
+  - clause: "Clause 9.1"
+    obligation: "half-yearly function test of the emergency shutdown system"
+    text: >-
+      The emergency shutdown system, including remotely operated shutdown valves, trip initiators and
+      the shutdown logic, shall be function tested end to end at the prescribed periodicity and the
+      stroke time of each shutdown valve recorded against its design value.
+    frequency_days: 182
+    applies_to_types:
+      - esd_system
+      - shutdown_valve
+      - rosov
+      - compressor
+      - wellhead
+      - process_unit
+      - control_system
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [stroke_time, technician, findings]
+    penalty: >-
+      Loss of an independent protection layer; adverse finding in the OISD external safety audit and
+      a SIL verification failure against the site's safety requirement specification.
+    owner_role: "Head — Instrumentation"
+    severity: CRITICAL
+    grace_days: 10
+    remediation: >-
+      Function test the shutdown loop from initiator to final element, record valve stroke times and
+      restore any bypassed or forced trip to the normal state before returning the unit to service.
+    remediation_minutes: 300

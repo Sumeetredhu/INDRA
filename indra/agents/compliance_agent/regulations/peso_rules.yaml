@@ -1,0 +1,180 @@
+# PESO Rules — seeded compliance baseline.
+#
+# The Petroleum and Explosives Safety Organisation (Chief Controller of Explosives, Nagpur)
+# administers the Explosives Act 1884, the Petroleum Act 1934 and the rules made under them:
+# the Petroleum Rules 2002, the Static and Mobile Pressure Vessels (Unfired) Rules 2016,
+# the Gas Cylinders Rules 2016 and the Explosives Rules 2008.
+
+regulation: "PESO Rules"
+title: "PESO — Petroleum Rules 2002, SMPV(U) Rules 2016, Gas Cylinders Rules 2016, Explosives Rules 2008"
+authority: "Petroleum and Explosives Safety Organisation (Chief Controller of Explosives)"
+version: "Rules as in force; licence conditions govern where stricter"
+disclaimer: >-
+  Seeded baseline. Rule numbers and obligation text are a paraphrase written for machine checking.
+  The licence granted for the specific installation is the operative document — reconcile every
+  periodicity below against the conditions endorsed on that licence.
+
+requirements:
+  - clause: "SMPV(U) Rules 2016 — Rule 15"
+    obligation: "five-yearly periodical hydrostatic test of unfired pressure vessels"
+    text: >-
+      No person shall fill, or permit to be filled, any pressure vessel unless it has been
+      periodically tested and examined by a competent person recognised by the Chief Controller at
+      intervals not exceeding those specified, and a test certificate in the prescribed form is
+      available for inspection.
+    frequency_days: 1825
+    applies_to_types:
+      - pressure_vessel
+      - vessel
+      - lpg_vessel
+      - lpg_bullet
+      - bullet
+      - sphere
+      - mounded_vessel
+      - air_receiver
+      - receiver
+      - storage_vessel
+    evidence_types: [inspection_report]
+    required_evidence_fields: [test_pressure, inspector, certificate_number]
+    penalty: >-
+      Section 9 of the Petroleum Act 1934 and Rule 15 — the licence for the vessel stands void, the
+      vessel must be taken out of service, and the occupier is liable to prosecution with fine and
+      imprisonment up to three years.
+    owner_role: "Occupier / Licence Holder"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      Take the vessel out of service, complete the periodical hydrostatic test through a
+      PESO-recognised competent person and endorse the fresh test certificate on the licence.
+    remediation_minutes: 2880
+
+  - clause: "SMPV(U) Rules 2016 — Rule 20"
+    obligation: "annual testing of pressure vessel safety relief devices"
+    text: >-
+      Every pressure vessel shall be fitted with a pressure relief device of adequate capacity set at
+      or below the maximum allowable working pressure; the device shall be tested at the prescribed
+      periodicity and shall be sealed after setting.
+    frequency_days: 365
+    applies_to_types:
+      - pressure_vessel
+      - vessel
+      - safety_valve
+      - relief_valve
+      - psv
+      - air_receiver
+      - receiver
+      - lpg_vessel
+      - bullet
+      - sphere
+    evidence_types: [inspection_report]
+    required_evidence_fields: [safety_valve_setting, certificate_number]
+    penalty: >-
+      Rule 20 contravention — the vessel is deemed unfit for service; prosecution under Section 23 of
+      the Petroleum Act and cancellation of the storage licence on repetition.
+    owner_role: "Head — Static Equipment Inspection"
+    severity: CRITICAL
+    grace_days: 15
+    remediation: >-
+      Bench test and reseal the relief device at the stamped set pressure and file the certificate
+      with the seal number against the vessel licence file.
+    remediation_minutes: 240
+
+  - clause: "SMPV(U) Rules 2016 — Rule 27"
+    obligation: "annual external examination of pressure vessel installation"
+    text: >-
+      The installation, including the vessel supports, foundations, fire protection, gas detection,
+      earthing and the safety fittings, shall be externally examined once every year by a competent
+      person and the report kept available for inspection by the Chief Controller.
+    frequency_days: 365
+    applies_to_types:
+      - pressure_vessel
+      - vessel
+      - lpg_vessel
+      - bullet
+      - sphere
+      - mounded_vessel
+      - storage_vessel
+      - air_receiver
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, findings]
+    penalty: "Rule 27 contravention — adverse endorsement on the licence and refusal of licence renewal."
+    owner_role: "Occupier / Licence Holder"
+    severity: HIGH
+    grace_days: 30
+    remediation: >-
+      Commission the annual external examination of the vessel installation by a recognised competent
+      person and keep the signed report in the licence file.
+    remediation_minutes: 480
+
+  - clause: "Petroleum Rules 2002 — Rule 116"
+    obligation: "three-yearly renewal of the petroleum storage licence"
+    text: >-
+      A licence granted for the storage of petroleum shall remain in force for the period endorsed on
+      it and shall be renewed on or before its expiry; petroleum shall not be stored otherwise than in
+      accordance with a licence in force.
+    frequency_days: 1095
+    applies_to_types: ["*"]
+    evidence_types: [inspection_report, regulation]
+    required_evidence_fields: [licence_number, validity]
+    penalty: >-
+      Storage without a licence in force attracts prosecution under Section 23 of the Petroleum Act
+      1934 — imprisonment up to three years or fine, and seizure of the petroleum stored.
+    owner_role: "Occupier / Licence Holder"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      File the renewal application with the fee, the approved layout and the current test
+      certificates well before expiry, and record the renewed licence number and validity.
+    remediation_minutes: 960
+
+  - clause: "Gas Cylinders Rules 2016 — Rule 35"
+    obligation: "five-yearly periodic testing of gas cylinders"
+    text: >-
+      No person shall fill any cylinder unless it has been examined and tested by a competent person
+      within the periodicity specified for that class of gas, and the cylinder bears the test date
+      stamp and the identification of the testing station.
+    frequency_days: 1825
+    applies_to_types:
+      - gas_cylinder
+      - cylinder
+      - cylinder_bank
+      - nitrogen_bank
+      - hydrogen_bank
+      - breathing_apparatus
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [test_pressure, test_station, certificate_number]
+    penalty: >-
+      Filling or use of a time-expired cylinder contravenes the Gas Cylinders Rules — prosecution
+      under the Explosives Act 1884 and confiscation of the cylinders.
+    owner_role: "Stores and Gas Bank Custodian"
+    severity: HIGH
+    grace_days: 0
+    remediation: >-
+      Withdraw time-expired cylinders from service, send them to an approved testing station and
+      record the new test date stamp against the cylinder serial numbers.
+    remediation_minutes: 240
+
+  - clause: "Explosives Rules 2008 — Rule 106"
+    obligation: "quarterly inspection of the explosives magazine"
+    text: >-
+      Every licensed magazine shall be inspected for the condition of the lightning protection,
+      earthing, doors and locks, ventilation, distance barricades and the accuracy of the explosives
+      account; the inspection shall be recorded in the magazine register.
+    frequency_days: 90
+    applies_to_types:
+      - magazine
+      - explosive_magazine
+      - detonator_store
+      - explosives_store
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, lightning_protection, findings]
+    penalty: >-
+      Contravention of the Explosives Rules 2008 — suspension or cancellation of the magazine licence
+      and prosecution under Section 9B of the Explosives Act 1884.
+    owner_role: "Magazine Officer"
+    severity: HIGH
+    grace_days: 7
+    remediation: >-
+      Inspect the magazine against the licence conditions, test the lightning protection earth and
+      reconcile the explosives account in the magazine register.
+    remediation_minutes: 120

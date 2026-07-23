@@ -1,0 +1,178 @@
+# OISD-STD-144 — seeded compliance baseline for LPG / liquefied gas handling facilities.
+
+regulation: "OISD-STD-144"
+title: "OISD-STD-144 — Liquefied Petroleum Gas Installations: Design, Inspection and Safe Operation"
+authority: "Oil Industry Safety Directorate, Ministry of Petroleum and Natural Gas"
+version: "Revision applicable at site; verify the edition in force"
+disclaimer: >-
+  Seeded baseline. Clause numbers and obligation text are a paraphrase written for machine checking.
+  Confirm against the edition of OISD-STD-144 held in site document control, and against the PESO
+  approval conditions for the specific vessel, before using this in an audit response.
+
+requirements:
+  - clause: "Clause 4.5"
+    obligation: "quarterly external visual inspection of LPG storage vessels"
+    text: >-
+      Above-ground and mounded LPG storage vessels shall be visually inspected for corrosion under
+      supports, coating breakdown, settlement of foundations, condition of the vapour and liquid
+      connections, and integrity of the mounding cover where provided.
+    frequency_days: 90
+    applies_to_types:
+      - lpg_vessel
+      - lpg_bullet
+      - bullet
+      - mounded_vessel
+      - horton_sphere
+      - sphere
+      - pressure_vessel
+      - vessel
+    evidence_types: [inspection_report]
+    required_evidence_fields: [inspector, findings]
+    penalty: >-
+      Breach of the PESO licence condition for the storage installation under the Static and Mobile
+      Pressure Vessels (Unfired) Rules; licence suspension risk on a repeat non-conformity.
+    owner_role: "Head — Static Equipment Inspection"
+    severity: HIGH
+    grace_days: 10
+    remediation: >-
+      Carry out the quarterly external walkdown of the vessel including supports, coating and
+      mounding, and raise work orders for every coating breakdown or corrosion patch recorded.
+    remediation_minutes: 120
+
+  - clause: "Clause 4.6"
+    obligation: "ten-yearly hydrostatic test and ultrasonic thickness survey of LPG vessels"
+    text: >-
+      Every LPG storage vessel shall be subjected to periodical hydrostatic testing and internal or
+      ultrasonic thickness examination at the interval permitted by the competent authority; the
+      minimum measured thickness shall be assessed against the corrosion allowance and the remaining
+      life recorded.
+    frequency_days: 3650
+    applies_to_types:
+      - lpg_vessel
+      - lpg_bullet
+      - bullet
+      - mounded_vessel
+      - horton_sphere
+      - sphere
+    evidence_types: [inspection_report]
+    required_evidence_fields: [thickness_mm, test_pressure, inspector, certificate_number]
+    penalty: >-
+      Operation of an unfired pressure vessel beyond its test validity contravenes the SMPV(U) Rules;
+      the PESO licence for the vessel becomes void and the vessel must be taken out of service.
+    owner_role: "Head — Static Equipment Inspection"
+    severity: CRITICAL
+    grace_days: 0
+    remediation: >-
+      Plan the vessel out-of-service window, complete the hydrostatic test and UT thickness grid with
+      a PESO-recognised competent person, and lodge the test certificate for licence revalidation.
+    remediation_minutes: 2880
+
+  - clause: "Clause 5.3"
+    obligation: "quarterly calibration of hydrocarbon gas detectors"
+    text: >-
+      Fixed hydrocarbon and toxic gas detectors covering the storage, pump house, compressor house
+      and tanker loading areas shall be span-calibrated with certified calibration gas at the
+      prescribed periodicity, and the alarm set points verified at 20 percent and 40 percent of the
+      lower explosive limit.
+    frequency_days: 90
+    applies_to_types:
+      - gas_detector
+      - lel_detector
+      - hydrocarbon_detector
+      - toxic_gas_detector
+      - flame_detector
+      - detector
+    evidence_types: [inspection_report, spreadsheet]
+    required_evidence_fields: [calibration_gas, span_reading, technician]
+    penalty: >-
+      Loss of the primary leak detection layer; adverse OISD external safety audit finding and a
+      breach of the site's emergency detection philosophy.
+    owner_role: "Head — Instrumentation"
+    severity: HIGH
+    grace_days: 7
+    remediation: >-
+      Span-calibrate the detector with certified gas, verify both alarm set points against the LEL
+      basis and record the pre- and post-calibration readings.
+    remediation_minutes: 60
+
+  - clause: "Clause 6.2"
+    obligation: "annual verification of safety relief valve set pressure"
+    text: >-
+      Pressure relief valves protecting LPG vessels, pumps and pipelines shall be removed, bench
+      tested and reset to the stamped set pressure at the prescribed periodicity; each valve shall be
+      sealed and tagged after testing.
+    frequency_days: 365
+    applies_to_types:
+      - safety_valve
+      - relief_valve
+      - psv
+      - lpg_vessel
+      - lpg_bullet
+      - bullet
+      - sphere
+      - pressure_vessel
+      - vessel
+    evidence_types: [inspection_report]
+    required_evidence_fields: [safety_valve_setting, test_pressure, certificate_number]
+    penalty: >-
+      An unproven relief device on a licensed pressure vessel is a direct SMPV(U) Rules contravention
+      and voids the vessel's fitness certification.
+    owner_role: "Head — Static Equipment Inspection"
+    severity: CRITICAL
+    grace_days: 15
+    remediation: >-
+      Swap in a tested spare relief valve, bench test the removed valve to the stamped set pressure
+      and file the test certificate with the seal number against the vessel tag.
+    remediation_minutes: 240
+
+  - clause: "Clause 7.4"
+    obligation: "quarterly leak and mechanical seal integrity check of LPG pumps and compressors"
+    text: >-
+      LPG transfer pumps and compressors shall be checked for seal leakage, gland condition,
+      vibration and bearing temperature; any detected hydrocarbon leak shall be attended before the
+      machine is returned to service.
+    frequency_days: 90
+    applies_to_types:
+      - lpg_pump
+      - lpg_compressor
+      - compressor
+      - pump
+      - booster_pump
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [technician, findings]
+    penalty: "Hydrocarbon release risk in a licensed area; adverse OISD audit finding and loss-of-containment exposure."
+    owner_role: "Head — Rotating Equipment"
+    severity: WARNING
+    grace_days: 15
+    remediation: >-
+      Inspect the mechanical seal and gland, gas-test the seal area, and raise a work order for seal
+      replacement where any leak is detected.
+    remediation_minutes: 90
+
+  - clause: "Clause 8.1"
+    obligation: "half-yearly operation test of remotely operated shutoff valves"
+    text: >-
+      Remotely operated shutoff valves on vessel liquid and vapour lines shall be operated from the
+      remote station and from the field, and their closure time recorded against the design maximum;
+      fusible plug actuation shall be verified.
+    frequency_days: 182
+    applies_to_types:
+      - rosov
+      - shutdown_valve
+      - emergency_shutoff_valve
+      - lpg_vessel
+      - lpg_bullet
+      - bullet
+      - sphere
+    evidence_types: [inspection_report, work_order]
+    required_evidence_fields: [stroke_time, technician]
+    penalty: >-
+      Failure of the primary isolation layer for a licensed LPG vessel; PESO licence condition breach
+      and adverse OISD external safety audit finding.
+    owner_role: "Head — Instrumentation"
+    severity: HIGH
+    grace_days: 10
+    remediation: >-
+      Operate the valve from both the remote panel and the field station, record closure time against
+      the design limit and restore the fusible plug protection.
+    remediation_minutes: 120
