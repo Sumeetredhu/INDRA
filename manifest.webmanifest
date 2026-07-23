@@ -1,0 +1,9 @@
+{
+  "name": "INDRA Operator Console",
+  "short_name": "INDRA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071a2d",
+  "theme_color": "#071a2d",
+  "description": "Grounded industrial intelligence for technicians and reliability teams."
+}
